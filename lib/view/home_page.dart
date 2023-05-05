@@ -69,7 +69,11 @@ class HomePage extends StatelessWidget {
                                     color: Colors.blue,
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      ref
+                                          .read(todoProvider.notifier)
+                                          .deleteTodo(todos[index]);
+                                    },
                                     icon: const Icon(Icons.delete),
                                     color: Colors.red,
                                   ),
