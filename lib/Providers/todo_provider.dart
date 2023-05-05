@@ -31,4 +31,10 @@ class TodoProvider extends StateNotifier<List<Todo>> {
 
     state = [...state];
   }
+
+  void updateTodo(Todo todo) {
+    state = [
+      for (final t in state) t.datetime == todo.datetime ? todo : t,
+    ];
+  }
 }

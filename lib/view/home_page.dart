@@ -64,7 +64,41 @@ class HomePage extends StatelessWidget {
                               child: Row(
                                 children: [
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Get.defaultDialog(
+                                        title: 'Update',
+                                        confirm: ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text('Close '),
+                                        ),
+                                        content: Padding(
+                                          padding: const EdgeInsets.all(20.0),
+                                          child: Column(
+                                            children: [
+                                              TextFormField(
+                                                initialValue:
+                                                    todos[index].label,
+                                                onFieldSubmitted: (value) {
+                                                  final newTodo = Todo(
+                                                      datetime:
+                                                          todos[index].datetime,
+                                                      label: value);
+
+                                                  ref
+                                                      .read(
+                                                          todoProvider.notifier)
+                                                      .updateTodo(newTodo);
+
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
                                     icon: const Icon(Icons.edit),
                                     color: Colors.blue,
                                   ),
