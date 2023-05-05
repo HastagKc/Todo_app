@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:todo_app/Providers/name_provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final time = DateTime.now();
 
+  // final userName = Get.arguments;
+  final String userName;
+  HomePage({required this.userName});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Consumer(builder: (context, ref, child) {
-          final name = ref.watch(nameProvider);
-
-          final dateTime = DateTime.now();
-          return dateTime.hour > 12
-              ? Text(
-                  'Good evening $name',
-                )
-              : Text('Good Morning $name');
-        }),
+        title: time.hour > 12
+            ? Text('Good Evening $userName')
+            : Text('Good Morning $userName'),
       ),
     );
   }
